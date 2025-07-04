@@ -1,0 +1,128 @@
+/* ===================================================================
+ * Archivo de Configuración de Rofi (config.rasi) - VERSIÓN CORREGIDA
+ * Paleta: Azul Cyan y Rojo (consistente con Alacritty)
+ * ===================================================================
+ */
+
+configuration {
+    modi: "drun,run,window";
+    show-icons: true;
+    font: "FiraCode Nerd Font 12";
+    disable-history: false;
+    location: 0;
+    yoffset: -150;
+    display-drun: "dRun";
+    display-run: "Run";
+    display-window: "Windows";
+}
+
+@theme "/dev/null"
+
+/* ===================================================================
+ * Definición del Tema
+ * ===================================================================
+ */
+
+* {
+    /* --- Paleta de Colores --- */
+    bg: #1e222a;
+    bg-alt: #282c34;
+    fg: #e0e0e0;
+    fg-alt: #5c6370;
+
+    cyan: #00ffff;
+    green: #50C878;
+    red: #e06c75;
+    yellow: #e5c07b;
+    blue: #61afef;
+    magenta: #c678dd;
+
+    /* --- Propiedades Globales --- */
+    background-color: transparent;
+    text-color: @fg;
+}
+
+window {
+    background-color: @bg;
+    width: 600px;
+    padding: 15px;
+    border: 2px;
+    border-radius: 10px;
+    border-color: @cyan;
+    location: center;
+    anchor: center;
+}
+
+mainbox {
+    children: [ inputbar, listview ];
+    spacing: 15px;
+    padding: 5px;
+}
+
+/* --- Barra de Entrada --- */
+inputbar {
+    children: [ prompt, entry ];
+    spacing: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: @bg-alt;
+}
+
+prompt {
+    enabled: true;
+    padding: 5px 10px;
+    border-radius: 6px;
+    background-color: @cyan;
+    text-color: @bg;
+}
+
+entry {
+    placeholder: "Search...";
+    placeholder-color: @fg-alt;
+    text-color: @fg;
+    cursor: text;
+    vertical-align: 0.5;
+}
+
+/* --- Lista de Elementos --- */
+listview {
+    columns: 1;
+    lines: 8;
+    cycle: true;
+    dynamic: true;
+    layout: vertical;
+}
+
+element {
+    orientation: horizontal;
+    padding: 10px;
+    border-radius: 8px;
+}
+
+element-text {
+    vertical-align: 0.5;
+}
+
+element-icon {
+    size: 20px;
+    padding: 0 10px 0 0;
+}
+
+element.normal.normal {
+    background-color: @bg;
+    text-color: @fg;
+}
+
+/*
+ * Elemento seleccionado por el cursor.
+ * Ahora usa el color rojo de la paleta.
+ */
+element.selected.normal {
+    background-color: @red;
+    text-color: @bg;
+}
+
+element.alternate.normal {
+    background-color: @bg;
+    text-color: @fg;
+}

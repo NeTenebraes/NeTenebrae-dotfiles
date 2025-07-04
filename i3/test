@@ -1,0 +1,283 @@
+#######################################################
+# __  __       _          ____             __ _       #
+#|  \/  | __ _(_)_ __    / ___|___  _ __  / _(_) __ _ #
+#| |\/| |/ _` | | '_ \  | |   / _ \| '_ \| |_| |/ _` |#
+#| |  | | (_| | | | | | | |__| (_) | | | |  _| | (_| |#
+#|_|  |_|\__,_|_|_| |_|  \____\___/|_| |_|_| |_|\__, |#
+#                                               |___/ #
+#######################################################
+
+# Mod key
+incipal (Mod Key)
+# Generalmente, 'Mod4' es la tecla Super (Windows/Cmd) y 'Mod1' es Alt.
+# Puedes cambiarlo a Mod1 (Alt) si lo prefieres: set $mod Mod1
+set $mod Mod4
+
+# --- Comandos Generales ---
+# Cierra la ventana enfocada
+bindsym $mod+Shift+q kill
+
+# Reinicia i3 inplace (mantiene las ventanas abiertas)
+bindsym $mod+Shift+r restart
+
+# Recarga la configuración de i3 (útil después de modificar este archivo)
+bindsym $mod+r reload
+
+# Sale de i3 (cierra la sesión)
+bindsym $mod+Shift+e exec "i3-msg exit"
+
+# Inicia un terminal (asegúrate de que 'alacritty' o 'gnome-terminal' estén instalados)
+# Dado que tienes 'gnome-console', lo usaremos por defecto.
+# Si prefieres 'alacritty' y lo instalas: bindsym $mod+Return exec alacritty
+bindsym $mod+Return exec gnome-console
+
+# Inicia dmenu (lanzador de aplicaciones, lo tienes instalado)
+bindsym $mod+d exec dmenu_run
+
+# Captura de pantalla (usando 'maim', que tienes instalado)
+# Guarda la captura en el directorio de imágenes con marca de tiempo
+bindsym Print exec maim ~/Imágenes/screenshot_$(date +%Y%m%d%H%M%S).png
+bindsym $mod+Print exec maim -s ~/Imágenes/screenshot_$(date +%Y%m%d%H%M%S).png # Selección de área
+
+# Bloquea la pantalla (usando 'i3lock', que tienes instalado)
+bindsym $mod+Shift+l exec i3lock
+
+# --- Diseño de Ventanas ---
+# Cambia a modo de pestañas
+bindsym $mod+w layout tabbed
+# Cambia a modo apilado
+bindsym $mod+s layout stacking
+# Cambia a modo de baldosas (por defecto)
+bindsym $mod+e layout toggle split
+
+# Alternar entre ventanas flotantes y en mosaico
+bindsym $mod+Shift+space floating toggle
+
+# Hacer que una ventana sea flotante
+for_window [class="^.*"] floating enable
+
+# Centrar ventanas flotantes (opcional, pero útil)
+for_window [floating] center
+
+# --- Navegación de Foco ---
+# Mueve el foco con las teclas de dirección
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# O con j, k, l, ñ/semicolon (diseño qwerty)
+# bindsym $mod+j focus left
+# bindsym $mod+k focus down
+# bindsym $mod+l focus up
+# bindsym $mod+semicolon focus right
+
+# --- Mover Ventanas ---
+# Mueve la ventana enfocada con las teclas de dirección
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# O con j, k, l, ñ/semicolon
+# bindsym $mod+Shift+j move left
+# bindsym $mod+Shift+k move down
+# bindsym $mod+Shift+l move up
+# bindsym $mod+Shift+semicolon move right
+
+# --- Workspaces (Espacios de Trabajo) ---
+# Define los nombres de tus workspaces
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+# Cambiar a workspace
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+
+# Mover ventana a workspace
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
+
+# Ir al workspace anterior y posterior
+bindsym $mod+minus workspace back_and_forth
+bindsym $mod+Tab workspace next
+bindsym $mod+Shift+Tab workspace prev
+
+# Mover la ventana al workspace anterior y posterior
+bindsym $mod+Control+Left move container to workspace prev
+bindsym $mod+Control+Right move container to workspace next
+
+# --- Ajustar tamaño de ventanas (resize) ---
+mode "resize" {
+    bindsym Left resize shrink width 10 px or 10 ppt
+    bindsym Down resize grow height 10 px or 10 ppt
+    bindsym Up resize shrink height 10 px or 10 ppt
+    bindsym Right resize grow width 10 px or 10 ppt
+
+    # bindsym j resize shrink width 10 px or 10 ppt
+    # bindsym k resize grow height 10 px or 10 ppt
+    # bindsym i resize shrink height 10 px or 10 ppt
+    # bindsym l resize grow width 10 px or 10 ppt
+
+    # Salir del modo resize
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+
+# --- Barras de título y bordes ---
+# Estilo de borde
+# new_window pixel 1 # Borde de 1px
+# new_window normal # Borde normal
+new_window none # Sin bordes
+
+# Colores de la barra de título (ajusta estos a tus preferencias)
+# class                 border  bground text    indicator
+client.focused          #4c7899 #285577 #ffffff #2e9ef4
+client.focused_inactive #333333 #5f676a #ffffff #484e50
+client.unfocused        #333333 #222222 #888888 #292d2e
+client.urgent           #2f343a #900000 #ffffff #900000
+client.placeholder      #000000 #0c0c0c #ffffff #000000
+
+# Ocultar automáticamente las barras de título cuando no son necesarias (opcional)
+# hide_edge_borders smart
+
+# --- Barra de Estado (i3bar) ---
+bar {
+    status_command i3status # i3status es una buena opción por defecto, ya lo tienes
+
+    # Posición de la barra (top o bottom)
+    position bottom
+
+    # Fuente (asegúrate de que estén instaladas o usa una genérica)
+    # Tienes 'noto-fonts' y 'ttf-font-awesome', 'ttf-jetbrains-mono'
+    # font pango: JetBrains Mono 10, Font Awesome 10
+    font pango: sans-serif 10
+
+    colors {
+        # Colores de la barra (ajusta a tus preferencias)
+        background #222222
+        statusline #ffffff
+        separator  #666666
+
+        # Colores para los workspaces
+        focused_background   #4c7899
+        focused_statusline   #ffffff
+        focused_separator    #666666
+        focused_border       #4c7899
+
+        active_background    #333333
+        active_statusline    #ffffff
+        active_separator     #666666
+        active_border        #333333
+
+        inactive_background  #222222
+        inactive_statusline  #888888
+        inactive_separator   #444444
+        inactive_border      #222222
+
+        urgent_background    #900000
+        urgent_statusline    #ffffff
+        urgent_separator     #900000
+        urgent_border        #900000
+    }
+}
+
+# --- Configuración de Sonido ---
+# Utiliza pactl para controlar PulseAudio (o PipeWire-Pulse, que es lo que tienes)
+# Necesitarás 'pavucontrol' para una interfaz gráfica (lo tienes instalado)
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+
+# Abrir pavucontrol
+bindsym $mod+v exec pavucontrol
+
+# --- Configuración de Brillo (si aplica) ---
+# Necesitarás 'xbacklight' o 'brightnessctl' (no los veo en tu lista, es posible que necesites instalarlos)
+# Si tienes una laptop, podrías instalar 'brightnessctl': sudo pacman -S brightnessctl
+# bindsym XF86MonBrightnessUp exec brightnessctl set +5%
+# bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
+
+# --- Configuración de Red (NetworkManager) ---
+# Abrir el editor de conexiones de NetworkManager (lo tienes)
+bindsym $mod+n exec nm-connection-editor
+
+
+
+# --- Reglas de Ventanas (asignar aplicaciones a workspaces específicos) ---
+# Abre Firefox en el workspace 2
+assign [class="firefox"] $ws2
+
+# Abre Audacity en el workspace 3
+assign [class="Audacity"] $ws3
+
+# Abre GIMP en el workspace 4
+assign [class="Gimp"] $ws4
+
+# Abre Kdenlive en el workspace 5
+assign [class="kdenlive"] $ws5
+
+# Abre OBS Studio en el workspace 6
+assign [class="obs"] $ws6
+
+# Abre Visual Studio Code en el workspace 7
+assign [class="Code"] $ws7
+
+# Abre Spotify (si lo tienes instalado) en el workspace 8
+# assign [class="Spotify"] $ws8
+
+# Abre Telegram Desktop (si lo tienes instalado) en el workspace 9
+# assign [class="TelegramDesktop"] $ws9
+
+# Para ventanas flotantes (diálogos, pop-ups, etc.)
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="dialog"] floating enable
+for_window [window_type="dialog"] floating enable
+for_window [class="feh"] floating enable # Para feh cuando se abre como visor
+for_window [class="pavucontrol"] floating enable, border pixel 1, resize set 600 400, center
+
+# --- Otras Opciones ---
+# Modo de enfoque cuando la ventana se abre
+# focus_follows_mouse no # No cambia el foco al pasar el ratón
+focus_follows_mouse yes # Cambia el foco al pasar el ratón
+
+# Bordes de las ventanas (cuando no hay más ventanas en el contenedor)
+# default_border normal
+# default_border pixel 1
+# default_border none
+
+# Oculta las barras de título si solo hay una ventana en el contenedor
+# hide_edge_borders smart_no_gaps
+
+# Define el modo de comportamiento de la tecla escape para salir de un modo
+# bindcode --release $release_esc_key mode "default"
+
+# Ajustes para el control de la energía (opcional)
+# bindsym XF86PowerOff exec systemctl poweroff
+# bindsym XF86Sleep exec systemctl suspend
