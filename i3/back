@@ -6,12 +6,13 @@
 #|_|  |_|\__,_|_|_| |_|  \____\___/|_| |_|_| |_|\__, |#
 #                                               |___/ #
 #######################################################
-
+haksjdfhksfkhasdf
 # Mod key
 incipal (Mod Key)
 # Generalmente, 'Mod4' es la tecla Super (Windows/Cmd) y 'Mod1' es Alt.
 # Puedes cambiarlo a Mod1 (Alt) si lo prefieres: set $mod Mod1
 set $mod Mod4
+i esto cre crack
 
 # --- Comandos Generales ---
 # Cierra la ventana enfocada
@@ -24,7 +25,7 @@ bindsym $mod+Shift+r restart
 bindsym $mod+r reload
 
 # Sale de i3 (cierra la sesión)
-bindsym $mod+Shift+e exec "i3-msg exit"
+bindsym $mod+Shift+e exec "i3-masdasdasdsg exit"
 
 # Inicia un terminal (asegúrate de que 'alacritty' o 'gnome-terminal' estén instalados)
 # Dado que tienes 'gnome-console', lo usaremos por defecto.
