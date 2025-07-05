@@ -12,9 +12,6 @@
 # Configuration file for i3wm.
 # Original config Path: ~/.config/i3/
 
-# Define i3 Font and size.
-font pango:DejaVu Sans Mono 8
-
 # Included the PATH for keybindings.
 include ~/.config/i3/keybindings
 
@@ -48,7 +45,8 @@ exec_always xrdb -merge ~/.Xresources
 exec_always --no-startup-id feh --bg-fill $HOME/Pictures/wallpapers/0.jpg
 
 # --- Launch Polybar for bar Management ---
-exec_always --no-startup-id ~/.config/polybar/launch.sh
+exec_always --no-startup-id ~/.config/polybar/launch.sh --shapes 
+
 
 # --- Launch Dunst for Notification Management ---
 exec_always --no-startup-id dunst
@@ -80,40 +78,52 @@ exec --no-startup-id dex --autostart --environment i3
 #                         ███    ███   ▀                                                                                    #
 #############################################################################################################################
 
-set $ws1 "1: "
-set $ws2 "2: "
-set $ws3 "3: "
-set $ws4 "4: "
-set $ws5 "5: "
-set $ws6 "6: "
-set $ws7 "7: "
-set $ws8 "8: "
-set $ws9 "9: "
-set $ws10 "10: "
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"  
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
 
 # switch to workspace
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
 
-bindsym $mod+2 workspace number $ws2
-bindsym $mod+3 workspace number $ws3
-bindsym $mod+4 workspace number $ws4
-bindsym $mod+5 workspace number $ws5
-bindsym $mod+6 workspace number $ws6
-bindsym $mod+7 workspace number $ws7
-bindsym $mod+8 workspace number $ws8
-bindsym $mod+9 workspace number $ws9
-bindsym $mod+0 workspace number $ws10
+
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace number $ws1
-bindsym $mod+Shift+2 move container to workspace number $ws2
-bindsym $mod+Shift+3 move container to workspace number $ws3
-bindsym $mod+Shift+4 move container to workspace number $ws4
-bindsym $mod+Shift+5 move container to workspace number $ws5
-bindsym $mod+Shift+6 move container to workspace number $ws6
-bindsym $mod+Shift+7 move container to workspace number $ws7
-bindsym $mod+Shift+8 move container to workspace number $ws8
-bindsym $mod+Shift+9 move container to workspace number $ws9
-bindsym $mod+Shift+0 move container to workspace number $ws10
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
+
+# VS Code
+assign [class="Code"] $ws1
+for_window [class="Code"] move to workspace $ws1
+
+# Firefox
+assign [class="firefox"] $ws2
+for_window [class="firefox"] move to workspace $ws2
+
+# Bindings para cambiar entre workspaces (ejemplo)
 
 ###########################################################################
 # ▄█     █▄   ▄█  ███▄▄▄▄   ████████▄   ▄██████▄   ▄█     █▄     ▄████████#
@@ -143,3 +153,10 @@ for_window [class="obs"] floating enabled
 # move tiling windows via drag & drop by left-clicking into the title bar,
 # or left-clicking anywhere into the window while holding the floating modifier.
 tiling_drag modifier titlebar
+
+# En tu archivo de configuración de i3 (~/.config/i3/config)
+assign [class="Code"] $ws1      
+assign [class="Firefox"] $ws1
+assign [class="Gimp"] $ws1
+
+default_border pixel 0

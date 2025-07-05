@@ -37,9 +37,6 @@ floating_modifier $mod
 bindsym $alt+Tab workspace back_and_forth
 bindsym $mod+F11 fullscreen toggle     
 
-bindsym $mod+1 workspace number $ws1
-
-
 # Control de volumen mejorado
 bindsym $mod+Prior exec "pactl set-sink-volume @DEFAULT_SINK@ +5% && sleep 0.1 && pkill -RTMIN+10 i3blocks"
 bindsym $mod+Next exec "pactl set-sink-volume @DEFAULT_SINK@ -5% && sleep 0.1 && pkill -RTMIN+10 i3blocks"
